@@ -1,20 +1,20 @@
 #!/usr/bin/python3
 
-"""The function prints a text with 2 new lines after each
-of these characters: '.', '?' and ':'"""
+
+'''
+   5-text_indentation
+   Contains a function that adds new line after characters
+'''
 
 
 def text_indentation(text):
-    """ It takes one parameter and must be a string"""
+    '''Python function to add two new lines to string at character points'''
     if not isinstance(text, str):
-        raise TypeError("text must be a string")
-    var_1 = 1
-    for l in text:
-        if var_1 == 1 and l == " ":
-            pass
-        else:
-            print(l, end="")
-            var_1 = 0
-        if l == '.' or l == '?' or l == ':':
-            print("\n")
-            var_1 = 1
+        raise TypeError('text must be a string')
+    period = text.replace('.', '.\n\n')
+    period = period.replace('?', '?\n\n')
+    period = period.replace(':', ':\n\n')
+    period1 = period.split('\n')
+    for line in range(len(period1)):
+        print("{}".format(period1[line].strip()),
+              end=("" if (line == (len(period1) - 1)) else '\n'))
