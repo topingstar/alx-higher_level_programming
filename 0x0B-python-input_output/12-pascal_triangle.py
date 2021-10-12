@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Pascal's Triangle"""
 
 
@@ -12,3 +13,4 @@ def pascal_triangle(n):
         row = [int(digit) for digit in str(a)]
         triangle += [row]
     return triangle
+
