@@ -1,21 +1,28 @@
 #!/usr/bin/python3
-# Print State obj with 'name' passed as arg from db 'hbtn_0e_6_usa'
-# Script should take 4 args: username, pw, db name, and state name
-# Must use SQLAlchemy
-import sys
-from sqlalchemy.orm import sessionmaker
+'''
+a script that lists all State objects
+from the database hbtn_0e_6_usa
+'''
+
+
+from sys import argv
 from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 
 if __name__ == "__main__":
-    engine = create_engine("mysql+mysqldb://{}:{}@localhost:3306/{}"
-                           .format(sys.argv[1], sys.argv[2], sys.argv[3]))
+    engine = create_engine(
+            'mysql+mysqldb://{}:{}@localhost/{}'.format(argv[1],
+                                                        argv[2],
+                                                        argv[3]))
+    Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-
-    res = session.query(State.id).filter(State.name == sys.argv[4])
-
-    if (res.first() is None):
-        print("Not found")
+    state = session.query(State).filter_by(name=argv[4]).first()
+    if state is not None:
+            print(str(state.id))
     else:
-        print(res[0][0])
+        print("Not found")
+    session.close()
+
