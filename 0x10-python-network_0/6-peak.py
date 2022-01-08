@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""
-  Function to find the peak of a list of integers
+"""Function to find the peak of a list of integers
 """
 
 
@@ -11,3 +10,4 @@ def find_peak(list_of_integers):
         return max(list_of_integers)
     else:
         return None
+    
