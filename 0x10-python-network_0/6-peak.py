@@ -1,21 +1,13 @@
 #!/usr/bin/python3
+"""
+  Function to find the peak of a list of integers
+"""
 
 
 def find_peak(list_of_integers):
-
-    loi = list_of_integers
-    if loi == []:
-        return None
-    total = len(loi)
-    if total == 1:
-        return loi[0]
-    elif total == 2:
-        return max(loi)
-    middle = int(total / 2)
-    peak = loi[middle]
-    if peak > loi[middle - 1] and peak > loi[middle + 1]:
-        return peak
-    elif peak < loi[middle - 1]:
-        return find_peak(loi[:middle])
+    """returns the peak in a list of integers
+    """
+    if len(list_of_integers) != 0:
+        return max(list_of_integers)
     else:
-        return find_peak(loi[middle + 1:])
+        return None
